@@ -1,6 +1,6 @@
 
 # Laporan Praktikum Minggu [1]
-Topik: [Arsitektur Sistem Operasi dan Kernel]
+[Arsitektur Sistem Operasi dan Kernel]
 
 ---
 
@@ -70,7 +70,6 @@ Topik: [Arsitektur Sistem Operasi dan Kernel]
 ---
 
 ## Kode / Perintah
-Tuliskan potongan kode atau perintah utama:
 ```bash
 uname -a
 whoami
