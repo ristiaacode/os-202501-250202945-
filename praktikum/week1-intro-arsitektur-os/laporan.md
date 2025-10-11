@@ -52,11 +52,6 @@ dmesg | head
 
 ---
 
-## Hasil Eksekusi
-![Screenshot hasil](screenshots/Screenshot_2025-10-07_231350.png)
-
----
-
 ## Analisis
 - Perintah `uname -a` menampilkan informasi kernel seperti versi, arsitektur, dan nama host. Ini menunjukkan bahwa sistem berjalan di atas kernel Linux versi tertentu.
 - `lsmod` menunjukkan modul-modul kernel yang dimuat untuk mendukung perangkat keras atau fungsi sistem, seperti jaringan atau penyimpanan.
@@ -73,6 +68,10 @@ Struktur Monolithic Kernel seperti pada Linux masih paling umum digunakan dalam 
 ---
 
 ## Tugas
+# Diagram Arsitektur
+Berikut gambar hasil diagram arsitektur:
+![Screenshot hasil](screenshots/Screenshot%202025-10-07%20231350.png)
+
 # Laporan Praktikum Minggu 1  
 ## Arsitektur Sistem Operasi
 
