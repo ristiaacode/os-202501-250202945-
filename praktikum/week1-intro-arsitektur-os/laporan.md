@@ -101,7 +101,6 @@ Struktur Monolithic Kernel seperti pada Linux masih paling umum digunakan dalam 
 ---
 
 # Diagram Arsitektur
-Berikut gambar hasil diagram arsitektur:
 ![Screenshot hasil](screenshots/Screenshot%202025-10-07%20231350.png)
 
 ---
