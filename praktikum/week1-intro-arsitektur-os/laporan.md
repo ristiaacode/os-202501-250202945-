@@ -33,12 +33,40 @@ Topik: [Arsitektur Sistem Operasi dan Kernel]
 ---
 
 ## Langkah Praktikum
-1. Buka terminal pada sistem operasi Linux.
-2. Jalankan perintah `uname -a` untuk melihat versi kernel dan detail sistem.
-3. Gunakan `lsmod` | head untuk menampilkan daftar modul kernel yang sedang aktif.
-4. Jalankan `dmesg` | head untuk melihat log awal pesan dari kernel.
-5. Simpan hasil eksekusi ke dalam file teks untuk dokumentasi.
-6. Lakukan commit dan push hasil ke repository GitHub.
+1. **Menyiapkan Lingkungan**
+   - Sebelum memulai, pastikan Linux (misalnya Ubuntu atau WSL) sudah terpasang dan dapat dijalankan dengan baik.  
+   - Konfigurasikan identitas Git agar setiap commit tercatat dengan benar:
+     ```bash
+     git config --global user.name "Nama Anda"
+     git config --global user.email "email@contoh.com"
+     ```
+2. **Mempelajari Konsep**
+   - Materi pengantar tentang sistem operasi dipelajari untuk memahami peran kernel, system call, serta hubungan antara user dan hardware.  
+   - Komponen pada sistem operasi seperti Linux dan Windows diamati untuk mengetahui perbedaan arsitekturnya.
+     
+3. **Melakukan Percobaan Dasar**
+   - Percobaan dilakukan melalui terminal menggunakan beberapa perintah berikut:
+     ```bash
+     uname -a
+     whoami
+     lsmod | head
+     dmesg | head
+     ```
+   - Hasil perintah menunjukkan informasi kernel, pengguna yang sedang aktif, dan modul kernel yang sedang berjalan.
+     
+4. **Membuat Diagram Arsitektur**
+   - Setelah percobaan, dibuat diagram alur hubungan antara **User → Application → System Call → Kernel → Hardware**.
+   - Diagram dapat dibuat menggunakan **draw.io**, **Mermaid**, atau **Canva** dan disimpan di folder `screenshots/diagram-os.png`.
+     
+5. **Menulis dan Mengunggah Laporan**
+   - Hasil pengamatan, analisis, dan kesimpulan dituliskan ke dalam file `laporan.md`.
+   - Screenshot hasil terminal disimpan di folder `screenshots/`.
+   - Semua file dikirim ke repository GitHub dengan perintah:
+     ```bash
+     git add .
+     git commit -m "Minggu 1 - Arsitektur Sistem Operasi dan Kernel"
+     git push origin main
+     ```
 ---
 
 ## Kode / Perintah
@@ -58,6 +86,7 @@ dmesg | head
 - `dmesg` menampilkan pesan dari kernel saat sistem booting, termasuk deteksi perangkat keras dan inisialisasi driver.
 - Hasil ini menunjukkan bagaimana kernel berfungsi sebagai penghubung utama antara perangkat lunak dan perangkat keras, serta bagaimana sistem call memungkinkan komunikasi antar lapisan seperti di diagram arsitektur OS.
 - Jika percobaan dilakukan di Windows, hasilnya berbeda karena sistem operasi tersebut tidak menyediakan akses langsung ke kernel lewat terminal seperti Linux; akses dilakukan melalui PowerShell atau Event Viewer yang sifatnya lebih terbatas.
+  
 ---
 
 ## Kesimpulan
@@ -68,9 +97,14 @@ Struktur Monolithic Kernel seperti pada Linux masih paling umum digunakan dalam 
 ---
 
 ## Tugas
+
+---
+
 # Diagram Arsitektur
 Berikut gambar hasil diagram arsitektur:
 ![Screenshot hasil](screenshots/Screenshot%202025-10-07%20231350.png)
+
+---
 
 # Laporan Praktikum Minggu 1  
 ## Arsitektur Sistem Operasi
