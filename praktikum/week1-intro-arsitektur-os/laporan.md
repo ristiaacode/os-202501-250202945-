@@ -53,22 +53,23 @@ dmesg | head
 ---
 
 ## Hasil Eksekusi
-
+![Screenshot hasil](screenshots/Screenshot_2025-10-07_231350.png)
 
 ---
 
 ## Analisis
--Perintah `uname -a` menampilkan informasi kernel seperti versi, arsitektur, dan nama host. Ini menunjukkan bahwa sistem berjalan di atas kernel Linux versi tertentu.
--`lsmod` menunjukkan modul-modul kernel yang dimuat untuk mendukung perangkat keras atau fungsi sistem, seperti jaringan atau penyimpanan.
--`dmesg` menampilkan pesan dari kernel saat sistem booting, termasuk deteksi perangkat keras dan inisialisasi driver.
--Hasil ini menunjukkan bagaimana kernel berfungsi sebagai penghubung utama antara perangkat lunak dan perangkat keras, serta bagaimana sistem call memungkinkan komunikasi antar lapisan seperti di diagram arsitektur OS.
--Jika percobaan dilakukan di Windows, hasilnya berbeda karena sistem operasi tersebut tidak menyediakan akses langsung ke kernel lewat terminal seperti Linux; akses dilakukan melalui PowerShell atau Event Viewer yang sifatnya lebih terbatas.
+- Perintah `uname -a` menampilkan informasi kernel seperti versi, arsitektur, dan nama host. Ini menunjukkan bahwa sistem berjalan di atas kernel Linux versi tertentu.
+- `lsmod` menunjukkan modul-modul kernel yang dimuat untuk mendukung perangkat keras atau fungsi sistem, seperti jaringan atau penyimpanan.
+- `dmesg` menampilkan pesan dari kernel saat sistem booting, termasuk deteksi perangkat keras dan inisialisasi driver.
+- Hasil ini menunjukkan bagaimana kernel berfungsi sebagai penghubung utama antara perangkat lunak dan perangkat keras, serta bagaimana sistem call memungkinkan komunikasi antar lapisan seperti di diagram arsitektur OS.
+- Jika percobaan dilakukan di Windows, hasilnya berbeda karena sistem operasi tersebut tidak menyediakan akses langsung ke kernel lewat terminal seperti Linux; akses dilakukan melalui PowerShell atau Event Viewer yang sifatnya lebih terbatas.
 ---
 
 ## Kesimpulan
 Kernel adalah inti sistem operasi yang berfungsi mengatur semua sumber daya komputer.
 Dari hasil percobaan, perintah `uname`, `lsmod`, dan `dmesg` membantu memahami bagaimana kernel bekerja di level rendah.
 Struktur Monolithic Kernel seperti pada Linux masih paling umum digunakan dalam sistem modern karena kinerjanya tinggi dan kompatibilitas luas, meskipun sistem hybrid dan modular kini makin banyak diadaptasi.
+
 ---
 
 ## Tugas
@@ -127,6 +128,7 @@ Saya belajar tentang perbedaan arsitektur Monolithic Kernel, Microkernel, dan La
 Kesulitan terdapat pada memahami cara kerja setiap arsitektur secara teknis, terutama bagaimana komponen saling berinteraksi di dalam kernel.
 
 Cara menyelesaikannya adalah dengan membaca ulang materi, mencari ilustrasi diagram arsitektur dari berbagai sumber, serta membandingkan contoh sistem operasi nyata agar lebih mudah memahami konsep dan perbedaannya.
+
 ---
 
 **Credit:**  
