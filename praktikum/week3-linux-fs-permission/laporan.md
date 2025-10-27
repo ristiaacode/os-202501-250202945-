@@ -147,13 +147,13 @@ Keduanya penting untuk **keamanan dan kontrol akses** di sistem Linux.
 - **Isi folder** ada dibagian `percobaan.txt`, `praktikum/`, `README-cloudshell.txt`
 - **File tersembunyi** ada dibagian `.` dan `..`
 
-Perintah `pwd`, `ls`, `cd`, dan `ls -a` digunakan untuk menavigasi sistem file dan menampilkan isi direktori, termasuk file tersembunyi.
+Perintah `pwd`, `ls`, `cd`, dan `ls -a` biasanya digunakan untuk menavigasi sistem file dan menampilkan isi direktori, termasuk file tersembunyi.
 
 ---
 
 ## Eksperimen 2
 - **Perintahnya** `cat /etc/passwd | head -n 5`
-- **Isi file nya** data pengguna sistem (user account list)
+- Untuk **Isi file** berisi data pengguna sistem (user account list)
 - **Struktur baris**  
   `username:password:UID:GID:comment:home:shell`
 - **Contoh:**  
@@ -207,24 +207,67 @@ Perubahan ini menunjukkan bahwa hanya **user root (administrator)** yang memilik
 ---
 
 ## Kesimpulan
+Praktikum ini mengajarkan bahwa:
 
+1. Sistem file Linux memiliki struktur hierarki yang jelas.
+2. File memiliki izin akses dan kepemilikan yang dapat diatur untuk menjaga keamanan.
+3. Perintah chmod dan chown berperan penting dalam pengelolaan hak akses file.
+4. Dokumentasi serta penggunaan Git menjadi bagian penting dari workflow praktikum berbasis sistem operasi.
+
+Secara keseluruhan kami dapat memahami cara mengelola file, direktori, hak akses, dan kepemilikan dalam Linux serta pentingnya menjaga keamanan sistem melalui pengaturan permission dan ownership yang tepat.
+
+---
+
+## Tugas
+# Tabel Observasi
+|  No | Perintah                                   | Hasil                                                          | Fungsi Perintah                                ||                                                              |
+| :-: | :----------------------------------------- | :--------------------------------------------------------------------------------- | :--------------------------------------------- | :--------------------------------------------- | ------------------------------------------------------------ |
+|  1  | `pwd`                                      | `/home/latifah181rr`                                                               | Menampilkan direktori aktif saat ini           |
+|  2  | `ls -l`                                    | Menampilkan daftar file lengkap (dengan izin, owner, group, ukuran, tanggal, nama) | Melihat isi direktori secara detail            |
+|  3  | `cd /tmp`                                  | Berpindah ke direktori `/tmp`                                                      | Navigasi ke folder sementara sistem            |
+|  4  | `ls -a`                                    | Menampilkan semua file termasuk tersembunyi (`.`, `..`)                            | Melihat seluruh isi direktori                  |
+|  5  |`cat /etc/passwd`                          | `head -n 5`                                                                         | Menampilkan 5 baris pertama dari `/etc/passwd` |
+|  6  | `echo "Hello <NAME><NIM>" > percobaan.txt` | Membuat file teks berisi kalimat tersebut                                          | Membuat file baru dengan konten tertentu       |
+|  7  | `ls -l percobaan.txt`                      | `-rw-rw-r--`                                                                       | Menampilkan detail izin dan kepemilikan file   |
+|  8  | `chmod 600 percobaan.txt`                  | Mengubah izin file jadi `rw-------`                                                | Memberikan akses hanya untuk pemilik file      |
+|  9  | `sudo chown root percobaan.txt`            | Owner berubah menjadi `root`                                                       | Mengubah pemilik file                          |
+
+---
+
+## Fungsi tiap perintah dan arti kolom permission (`rwxr-xr--`)
+Penjelasan setiap simbol dari perintah `rwxr-xr--`:
+
+1. **r** (read) artinya izin membaca isi file atau daftar direktori.
+2. **w** (write) artinya izin mengubah isi file atau menambah/menghapus file dalam direktori.
+3. **x** (execute) artinya izin menjalankan file atau masuk ke direktori.
+4. **-** (strip) artinya tidak memiliki izin tersebut.
+   berarti:
+   - **owner**: boleh baca, tulis, eksekusi.
+   - **group**: boleh baca dan eksekusi.
+   - **others**: hanya boleh baca.
+
+---
+
+## Peran `chmod` dan `chown` dalam keamanan sistem Linux.
+
+Perintah `chmod` dan `chown` berperan penting dalam menjaga keamanan sistem Linux. `chmod` digunakan untuk mengatur izin akses agar hanya pengguna tertentu yang dapat membaca, menulis, atau menjalankan file, sedangkan `chown` digunakan untuk mengubah kepemilikan file. Kombinasi keduanya memberikan lapisan keamanan yang kuat, mencegah penyalahgunaan file, serta menjaga integritas dan kerahasiaan data dalam sistem Linux.
 
 ---
 
 ## Quiz
-1. [Pertanyaan 1]  
-   **Jawaban:**  
-2. [Pertanyaan 2]  
-   **Jawaban:**  
-3. [Pertanyaan 3]  
-   **Jawaban:**  
+1. [Apa fungsi dari perintah `chmod`?]  
+   **Jawaban:** `chmod` biasanya digunakan untuk mengatur atau mengubah izin akses suatu file atau direktori di sistem operasi Linux.
+
+2. [Apa arti dari kode permission `rwxr-xr--`?]  
+   **Jawaban:** Arti tanda pertama menunjukkan jenis file (`-` untuk file biasa dan `d` untuk direktori). Tiga karakter berikutnya menunjukkan izin untuk pemilik (owner), yaitu `rwx` yang berarti dapat membaca, menulis, dan mengeksekusi. Tiga karakter selanjutnya menunjukkan izin untuk grup (group), yaitu `r-x` yang berarti hanya dapat membaca dan mengeksekusi tanpa menulis. Tiga karakter terakhir menunjukkan izin untuk pengguna lain (others), yaitu `r--` yang berarti hanya dapat membaca. Dengan demikian, file berizin `-rwxr-xr--` bisa dijalankan oleh pemilik dan grup, sedangkan pengguna lain hanya dapat membacanya.
+
+3. [Jelaskan perbedaan antara `chown` dan `chmod`.]  
+   **Jawaban:** Perbedaannya `chown` dapat mengatur apa yang boleh di lakukan seperti izin sedangkan `chmod` mengatur siapa yang berhak mengatur file tersebut seperti pemegang.
 
 ---
 
 ## Refleksi Diri
-Tuliskan secara singkat:
-- Apa bagian yang paling menantang minggu ini?  
-- Bagaimana cara Anda mengatasinya?  
+Bagian yang paling menantang pada praktikum minggu ini adalah memahami perubahan permission dan ownership menggunakan perintah `chmod` dan `chown`, terutama dalam membedakan hak akses antara user, group, dan others. Untuk mengatasinya, saya mencoba langsung dengan menjalankan perintah di terminal juga mengamati hasil sebelum dan sesudah perubahan, kemudian membaca dokumentasi dibagian `man chmod` dan `man chown` agar dapat lebih memahami fungsi serta dampak dari setiap opsi yang digunakan.
 
 ---
 
