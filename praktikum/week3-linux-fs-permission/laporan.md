@@ -220,8 +220,8 @@ Secara keseluruhan kami dapat memahami cara mengelola file, direktori, hak akses
 
 ## Tugas
 # Tabel Observasi
-|  No | Perintah                                   | Hasil                                                          | Fungsi Perintah                                ||                                                              |
-| :-: | :----------------------------------------- | :--------------------------------------------------------------------------------- | :--------------------------------------------- | :--------------------------------------------- | ------------------------------------------------------------ |
+|  No | Perintah                                   | Hasil                                                          | Fungsi Perintah                                |
+ :-: | :----------------------------------------- | :--------------------------------------------------------------------------------- | :--------------------------------------------- |
 |  1  | `pwd`                                      | `/home/latifah181rr`                                                               | Menampilkan direktori aktif saat ini           |
 |  2  | `ls -l`                                    | Menampilkan daftar file lengkap (dengan izin, owner, group, ukuran, tanggal, nama) | Melihat isi direktori secara detail            |
 |  3  | `cd /tmp`                                  | Berpindah ke direktori `/tmp`                                                      | Navigasi ke folder sementara sistem            |
