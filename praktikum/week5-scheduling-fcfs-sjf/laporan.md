@@ -178,7 +178,7 @@ Gantt Chart sederhana:
 | FCFS | 8,75 | 14,75 | Sederhana dan mudah diterapkan | Tidak efisien untuk proses panjang |
 | SJF | 6,25 | 12,25 | Optimal untuk job pendek | Menyebabkan *starvation* pada job panjang |
 
-### Kelebihan dan Kekurangan FCFS dan SJF
+### Kelebihan dan Kekurangan
 - FCFS sederhana dan adil, akan tetapi tidak optimal untuk metrik rata-rata waktu.
 - SJF lebih efisien, tetapi risiko starvation untuk job akan lebih panjang pada saat job pendek baru telah ada.
 
