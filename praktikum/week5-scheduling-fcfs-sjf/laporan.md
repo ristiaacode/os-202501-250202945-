@@ -109,7 +109,7 @@ Turnaround Time (TAT) = WT + Burst Time
 ```
 
  ```
- | P1 | P2 | P3 | P4 |
+ | P1 | P4 | P3 | P2 |
  0    6    9   16   24
 ```
 ---
@@ -127,7 +127,7 @@ Gantt Chart sederhana:
 ![Screenshot hasil](screenshots/sjf.png)
 Gantt Chart sederhana:
 ```
- | P1 | P2 | P3 | P4 |
+ | P1 | P4 | P3 | P2 |
  0    6    9   16   24
 ```
 
@@ -169,7 +169,7 @@ Gantt Chart sederhana:
 ![Screenshot hasil](screenshots/sjf.png)
 Gantt Chart sederhana:
 ```
- | P1 | P2 | P3 | P4 |
+ | P1 | P4 | P3 | P2 |
  0    6    9   16   24
 ```
 
