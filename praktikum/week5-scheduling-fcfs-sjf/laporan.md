@@ -112,6 +112,11 @@ Turnaround Time (TAT) = WT + Burst Time
  | P1 | P4 | P3 | P2 |
  0    6    9   16   24
 ```
+
+```
+=SUM | =AVERAGE
+```
+
 ---
 
 ## Hasil Eksekusi
