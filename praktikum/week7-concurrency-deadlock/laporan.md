@@ -167,6 +167,8 @@ for i in range(5):
 
 while True:
     time.sleep(1)
+```
+
 ---
 
 ## Hasil Eksekusi
@@ -175,7 +177,6 @@ Eksperimen 1
 
 Eksperimen 2
 ![Screenshot hasil](screenshots/Eksperimen2.png)
-```
 
 ---
 
