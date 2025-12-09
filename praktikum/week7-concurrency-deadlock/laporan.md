@@ -89,41 +89,145 @@ Sinkronisasi proses adalah cara komputer mengatur beberapa proses (program yang 
        eat()
        put_left_fork()
        put_right_fork()
-     ```
+```
 
+```import threading
+import time
+
+forks = [threading.Lock() for _ in range(5)]
+
+def philosopher(i):
+    left = forks[i]
+    right = forks[(i + 1) % 5]
+
+    while True:
+        print(f"Filsuf {i} berpikir...")
+        time.sleep(1)
+
+        left.acquire()
+        print(f"Filsuf {i} ambil garpu kiri {i}")
+
+        right.acquire()
+        print(f"Filsuf {i} ambil garpu kanan {(i + 1) % 5}")
+
+        print(f"Filsuf {i} sedang makan...")
+        time.sleep(1)
+
+        left.release()
+        right.release()
+        print(f"Filsuf {i} selesai makan dan letakan garpu")
+
+threads = []
+for i in range(5):
+    t = threading.Thread(target=philosopher, args=(i,), daemon=True)
+    threads.append(t)
+    t.start()
+```
+
+```import threading
+import time
+
+forks = [threading.Lock() for _ in range(5)]
+room_controller = threading.Semaphore(4)
+
+def philosopher_fixed(i):
+    left = forks[i]
+    right = forks[(i + 1) % 5]
+
+    while True:
+        print(f"Filsuf {i} berpikir...")
+        time.sleep(1)
+
+        room_controller.acquire()
+        print(f"Filsuf {i} mendapat izin masuk ruangan")
+        
+        try:
+            left.acquire()
+            print(f"Filsuf {i} berhasil ambil garpu kiri {i}")
+
+            right.acquire()
+            print(f"Filsuf {i} berhasil ambil garpu kanan {(i + 1) % 5}")
+
+            print(f"Filsuf {i} sedang makan...")
+            time.sleep(1)
+
+        finally:
+            left.release()
+            right.release()
+            print(f"Filsuf {i} selesai makan dan letakan garpu")
+
+            room_controller.release()
+
+
+threads_fixed = []
+for i in range(5):
+    t = threading.Thread(target=philosopher_fixed, args=(i,), daemon=True)
+    threads_fixed.append(t)
+    t.start()
+
+while True:
+    time.sleep(1)
 ---
 
 ## Hasil Eksekusi
+Eksperimen 1
 ![Screenshot hasil](screenshots/Eksperimen1.png)
+
+Eksperimen 2
+![Screenshot hasil](screenshots/Eksperimen2.png)
+```
 
 ---
 
 ## Analisis
-- Jelaskan makna hasil percobaan.  
-- Hubungkan hasil dengan teori (fungsi kernel, system call, arsitektur OS).  
-- Apa perbedaan hasil di lingkungan OS berbeda (Linux vs Windows)?  
+1. Deadlock muncul setelah setiap filsuf berhasil mengambil garpu kiri, lalu semuanya menunggu garpu kanan yang sedang dipegang orang lain. Deadlock terjadi karena setiap filsuf mengambil garpu dengan urutan yang sama (kiri dulu, lalu kanan)  
+
+2. Modifikasi yang memperkenalkan room_controller (Semaphore dengan nilai N-1, yaitu 4) berhasil mencegah deadlock secara efektif. Semaphore (room_controller) bertindak sebagai pelayan yang membatasi hanya maksimal 4 filsuf yang boleh berada di meja (mencoba mengambil garpu) secara bersamaan. Dengan hanya mengizinkan N-1 filsuf untuk mencoba makan, selalu ada setidaknya satu garpu bebas yang tidak dapat ditahan oleh semua filsuf secara kolektif. Keterbatasan ini menjamin bahwa filsuf terakhir yang masuk (misalnya P_3, jika 4 filsuf sudah masuk) pasti dapat mengambil kedua garpunya (F_3 dan F_4 dalam contoh ini) tanpa menunggu garpu yang ditahan oleh filsuf lain. Setelah filsuf ini selesai, ia melepaskan garpu, memecah rantai tunggu yang ada, dan memungkinkan filsuf lain untuk melanjutkan. Dengan demikian, kondisi Circular Wait dihilangkan, yang merupakan syarat mutlak untuk mencegah deadlock.
+
+3. Analisis Deadlock
+
+| Kondisi Deadlock     | Terjadi di Versi Deadlock                                                  | Solusi di Versi Fixed                                                                                                                                                                  |
+| -------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| *Mutual Exclusion* | Ya. Garpu hanya dapat digunakan 1 filsuf dalam satu waktu.                 | Tetap ada (mutual exclusion tidak dihilangkan). Namun dikontrol melalui *semaphore pada setiap garpu* untuk akses aman.                                                              |
+| *Hold and Wait*    | Ya. Filsuf memegang 1 garpu (hold) dan menunggu garpu lainnya (wait).      | *Dibatasi* dengan semaphore room = 4 sehingga tidak semua filsuf bisa menunggu secara bersamaan → kondisi hold-and-wait penuh tidak terjadi.                                       |
+| *No Preemption*    | Ya. Garpu tidak bisa direbut paksa, hanya dilepas saat selesai makan.      | Tetap. Tidak ada preemption. Namun tidak menyebabkan deadlock karena kondisi circular wait dihilangkan.                                                                                |
+| *Circular Wait*    | Ya. Semua filsuf bisa membentuk siklus: P0 menunggu P1, …, P4 menunggu P0. | *Dihilangkan* melalui: 1) batasi maksimum 4 filsuf, atau 2) modifikasi urutan pengambilan (filsuf terakhir mengambil garpu secara terbalik), sehingga siklus tidak pernah terbentuk. |
 
 ---
 
 ## Kesimpulan
-Tuliskan 2–3 poin kesimpulan dari praktikum ini.
+Pada versi fixed, strategi sinkronisasi ditambahkan, misalnya dengan semaphore untuk membatasi jumlah filsuf (maks. 4) atau mengubah urutan pengambilan garpu (asymmetric order). Modifikasi ini menghilangkan kondisi Circular Wait, dan sekaligus mengurangi Hold and Wait penuh, sehingga rantai deadlock terputus.
 
 ---
 
 ## Quiz
-1. [Pertanyaan 1]  
-   **Jawaban:**  
-2. [Pertanyaan 2]  
-   **Jawaban:**  
-3. [Pertanyaan 3]  
-   **Jawaban:**  
+
+1. Sebutkan empat kondisi utama penyebab deadlock.
+
+   **Jawab:**
+   
+      - Mutual Exclusion
+
+      - Hold dan Wait
+
+      - No Preemption
+
+      - Circular Wait
+
+2. Mengapa sinkronisasi diperlukan dalam sistem operasi?  
+
+   **Jawab :** Sinkronisasi diperlukan untuk mencegah inkonsistensi data dan sinkronisasi mengatur jalannya beberapa proses secara bersamaan untuk memastikan urutan eksekusi yang tepat, tanpa sinkronisasi akses bersamaan ke sumber daya bersama dapat menyebabkan data yang tidak konsistensi atau hasil yang tidak terduga.
+
+3. Jelaskan perbedaan antara semaphore dan monitor.
+
+   **Jawab:**
+   - Semaphore adalah variabel integer yang digunakan untuk mengontrol akses ke sumber daya bersama melalui operasi wait dan signal
+   - Monitir adalahkonstruksi sinkronisasi tingkat tinggi yang mengelompokkan data bersama dan prosedur yang beroperasi, memastikan hanya satu proses yang aktif di dalam monitor pada satu waktu.
 
 ---
 
 ## Refleksi Diri
-Tuliskan secara singkat:
-- Apa bagian yang paling menantang minggu ini?  
-- Bagaimana cara Anda mengatasinya?  
+Kesulitan utama dalam analisis deadlock terletak pada pemahaman bahwa keempat kondisi (Mutual Exclusion, Hold and Wait, No Preemption, dan Circular Wait) harus terpenuhi simultan agar sistem macet. Solusinya adalah dengan menerima sifat alami sumber daya (Mutual Exclusion dan No Preemption), dan memfokuskan upaya pencegahan hanya pada eliminasi salah satu dari dua kondisi yang dapat dikontrol: Circular Wait atau Hold and Wait. Jika salah satu dari kedua kondisi terakhir ini berhasil dihilangkan, maka deadlock tidak akan terjadi.
 
 ---
 
