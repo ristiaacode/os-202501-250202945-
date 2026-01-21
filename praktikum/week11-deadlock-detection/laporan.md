@@ -102,10 +102,6 @@ Berbeda dengan Prevention (mencegah salah satu dari 4 kondisi di atas) atau Avoi
 
 ## Hasil Eksekusi
 ## Simulasi
-![Screenshot hasil](screenshots/py1.png)
-![Screenshot hasil](screenshots/py2.png)
-
-## Hasil
 ![Screenshot hasil](screenshots/hasil.png)
 ---
 
