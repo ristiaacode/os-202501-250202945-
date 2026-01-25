@@ -190,9 +190,9 @@ VM mendukung konsep sandboxing dan hardening OS, sehingga aman digunakan untuk p
 ---
 
 ## Refleksi Diri
-Tuliskan secara singkat:
-- Apa bagian yang paling menantang minggu ini?  
-- Bagaimana cara Anda mengatasinya?  
+Bagian yang paling menantang adalah melakukan optimasi resource antara Host dan Guest OS. Saya harus memastikan alokasi RAM dan CPU cukup untuk menjalankan Linux Lite agar lancar saat membuka aplikasi berat seperti browser, namun tetap menjaga agar Windows 10 (Host) tidak mengalami lag atau freezing. Selain itu, memahami pembacaan monitoring sistem di terminal secara real-time memerlukan ketelitian ekstra.
+
+Saya mengatasinya dengan melakukan eksperimen bertahap pada pengaturan System di VirtualBox. Saya mencoba beberapa kombinasi jumlah Core CPU dan kapasitas RAM hingga menemukan "sweet spot" (keseimbangan) yang pas. Saya juga membaca manual dan dokumentasi perintah top serta free -h untuk memahami arti dari setiap kolom statistik yang ditampilkan di terminal.
 
 ---
 
